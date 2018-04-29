@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <!-- CSS Imports -->
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/leaflet.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link href='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css' rel='stylesheet' />
+  </head>
+  <body>
+    <!-- Navigation Sidebar -->
+    <div class="navsidebar">
+      <!-- logo -->
+      <div class="blank"></div>
+      <div id="logo-container">
+        <img id="logo" src="dunkin-donuts-logo-black-and-white.png" width="165" height="70"/>
+      </div>
+      <div class="blank"></div>
+      <!-- navigation choices -->
+      <div class="nav-bars">
+        <ul class="nav nav-pills nav-stacked">
+          <li role="presentation" id="maps"><a href="#">
+              <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+              Maps</a>
+          </li>
+          <li role="presentation" id="info"><a href="#">
+              <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+              Information</a>
+          </li>
+          <li role="presentation" id="filter"><a href="#">
+              <span class="glyphicon glyphicon glyphicon-filter" aria-hidden="true"></span>
+              Filter</a>
+          </li>
+          <li role="presentation" id="route"><a href="#">
+              <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
+              Route</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Interaction Sidebar -->
+    <div class="intsidebar">
+      <!-- maps -->
+      <div class="subdiv" id="maps-page">
+        <span class="glyphicon glyphicon-remove-circle" aria-hidden="true" id="hideit" style="font-size:25px; color:rgba(255, 255, 255, 0.7); float:right"></span>
+        <div class="barTitle">
+          <h3 style="color:rgba(255, 255, 255, 0.8); vertical-align:middle;margin-bottom:5px; margin-left:20px; margin-right:20px; margin-top: 40px">Select a map</h3>
+        </div>
+        <ul class="nav nav-pills nav-stacked" id="mapsChoice" style="margin-top: 20px">
+          <li role="presentation" id="mapsChoice1" style="margin-bottom:5px; margin-left:20px; margin-right:15px"><a href="#">Sales Volume</a></li>
+          <li role="presentation" id="mapsChoice2" style="margin-bottom:5px; margin-left:20px; margin-right:15px"><a href="#">Number of Employees</a></li>
+        </ul>
+      </div>
+      <!-- info -->
+
+    </div>
+    <!-- Map -->
+    <div id="map" class="map"></div>
+    <!-- Legend -->
+    <!-- Javascript Imports -->
+    <script src="js/jquery-2.2.0.js"></script>
+    <script src="js/underscore.js"></script>
+    <script src="js/leaflet.js"></script>
+    <script src='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@5/turf.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="js/decode.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,102 @@
+body {
+    padding: 0;
+    overflow: hidden;
+    font-family: Verdana;
+}
+
+h3 {
+    display: inline-block;
+    margin: 0px;
+    font-variant: small-caps;
+}
+
+.map {
+  position: absolute;
+  right: 0px;
+  left:180px;
+  height: 100%;
+  top: 0;
+}
+
+.blank {
+  font-size: 12px;
+  margin:10px;
+}
+
+.navsidebar {
+  position: absolute;
+  left: 0px;
+  width: 180px;
+  top: 0;
+  bottom: 0;
+  overflow-y: auto;
+  background-color: #363A4A;
+}
+
+#logo-container {
+  display: flex;
+  justify-content: center;
+}
+
+.nav-bars > ul > li > a {
+  border-radius: 0px;
+  color: #7C808D;
+  text-align:left;
+  font-variant: small-caps;
+  font-size: 16px;
+}
+
+.nav-bars > ul > li.active > a {
+  border-radius: 0px;
+  color: white;
+  background-color: #11799F;
+  text-align:left;
+  font-variant: small-caps;
+  font-size: 14px;
+}
+
+.nav-bars > ul > li > a:hover {
+  color:white;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.intsidebar {
+  z-index: 1000;
+  position: absolute;
+  left: 180px;
+  width: 320px;
+  top: 0;
+  bottom: 0;
+  overflow-y: auto;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+#hideit{
+  position: absolute;
+  left: 280px;
+  top: 12px;
+  cursor:pointer;
+}
+
+.subdiv > ul > li > a {
+  border-radius: 5px;
+  text-align:left;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  background-color: rgba(0,0,0,0.2);
+}
+
+.subdiv > ul > li.active > a {
+  border-radius: 5px;
+  text-align:left;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  background-color: #11799F;
+}
+
+.subdiv > ul > li > a:hover {
+  color:rgba(0,0,0,0.6);
+  background-color: rgba(255, 255, 255, 0.8);
+}

@@ -7,7 +7,7 @@ library(rgdal)
 library(sp)
 library(maptools)
 
-setwd("G:/Yinuo Yin/Study/Upenn/2018 Spring/CPLN 692/Yin-Final/DataCollection")
+setwd("G:/Yinuo Yin/Study/Upenn/2018 Spring/CPLN 692/CPLN692-Final-Project/rawdata")
 
 rawdata <- read.csv("RawData_StarbucksDD.csv")
 
@@ -42,4 +42,7 @@ dd_json <- geojson_json(ddSF)
 
 # Save it to a local file system.
 geojson_write(dd_json, 
-              file = "G:/Yinuo Yin/Study/Upenn/2018 Spring/CPLN 692/Yin-Final/DataCollection/dunkindonut.geojson")
+              file = "G:/Yinuo Yin/Study/Upenn/2018 Spring/CPLN 692/CPLN692-Final-Project/rawdata/dunkindonut.geojson")
+
+# For js mapping
+quantile(ddSF$SALES_VOL, c(0, .2, .4, .6, .8, 1))

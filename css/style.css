@@ -1,13 +1,23 @@
 body {
-    padding: 0;
-    overflow: hidden;
-    font-family: Verdana;
+  padding: 0;
+  overflow: hidden;
+  font-family: Verdana;
 }
 
+*:focus {outline:none}
+
 h3 {
-    display: inline-block;
-    margin: 0px;
-    font-variant: small-caps;
+  display: inline-block;
+  margin: 0px;
+  font-variant: small-caps;
+}
+
+h5 {
+  display: inline-block;
+  margin: 0px;
+  vertical-align: middle;
+  color:rgba(255, 255, 255, 0.7);
+  font-weight: bold;
 }
 
 .map {
@@ -46,15 +56,6 @@ h3 {
   font-size: 16px;
 }
 
-.nav-bars > ul > li.active > a {
-  border-radius: 0px;
-  color: white;
-  background-color: #11799F;
-  text-align:left;
-  font-variant: small-caps;
-  font-size: 14px;
-}
-
 .nav-bars > ul > li > a:hover {
   color:white;
   background-color: rgba(0, 0, 0, 0.2);
@@ -71,13 +72,6 @@ h3 {
   background-color: rgba(255, 255, 255, 0.5);
 }
 
-#hideit{
-  position: absolute;
-  left: 280px;
-  top: 12px;
-  cursor:pointer;
-}
-
 .subdiv > ul > li > a {
   border-radius: 5px;
   text-align:left;
@@ -87,16 +81,154 @@ h3 {
   background-color: rgba(0,0,0,0.2);
 }
 
-.subdiv > ul > li.active > a {
+.subdiv > ul > li > a:hover {
+  color:rgba(0,0,0,0.6);
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.input-group{
+  display: inline-block;
+  box-sizing: border-box;
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 5px;
+  padding:10px;
+  margin-top: 10px;
+  margin-left:20px;
+  margin-right:15px
+}
+
+.input-group .form-control {
+    position: relative;
+    z-index: 2;
+    float: left;
+    width: 100%;
+    background-color: rgba(0,0,0,0);
+    border-style: none;
+    color:antiquewhite;
+    box-sizing: border-box;
+    font-family: Verdana;
+    font-weight: lighter;
+    font-size:12px;
+}
+
+.form-control.number {
+  font-size: 12px;
+  font-weight: bold;
+  margin-top: 0px;
+  color: #11799F;
+}
+
+.info-subtitle {
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.filter-choice {
+  position:relative;
+  display: inline-block;
+  border-radius: 10px;
+  height:100px;
+  width: 100px;
+  background-color: rgba(255, 255, 255, 0.3);
+  z-index: 5000;
+  text-align: center;
+  padding: 10px;
+  vertical-align:middle;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.filter-choice:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.filter-expand > ul > li {
+  margin-left: 35px;
+  margin-right: 45px;
+}
+
+.filter-expand > ul > li > a {
   border-radius: 5px;
   text-align:left;
   font-size: 14px;
   color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
-  background-color: #11799F;
+  background-color: rgba(0,0,0,0.2);
 }
 
-.subdiv > ul > li > a:hover {
+.filter-expand> ul > li > a:hover {
   color:rgba(0,0,0,0.6);
   background-color: rgba(255, 255, 255, 0.8);
+}
+
+#route-direction {
+  margin-top: 20px;
+  margin-left: 20px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+#generateButton > button {
+  background-color: rgba(0,0,0,0.2);
+  border: 1px solid;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 3px 10px;
+  text-align: center;
+  text-decoration: none;
+  font-weight: normal;
+  display: inline-block;
+  font-size: 12px;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 40px;
+}
+
+#generateButton > button:hover {
+  color:rgba(0,0,0,0.6);
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+#go {
+  display: inline-block;
+  position:absolute;
+  margin-left: 190px;
+}
+
+#clear {
+  display: inline-block;
+  position:absolute;
+  margin-left: 240px;
+}
+
+#hideit1{
+  position: absolute;
+  left: 280px;
+  top: 12px;
+  cursor:pointer;
+}
+
+#hideit1:hover{
+  color:rgba(0,0,0,0.2);
+}
+
+#hideit2{
+  position: absolute;
+  left: 280px;
+  top: 12px;
+  cursor:pointer;
+}
+
+#hideit3{
+  position: absolute;
+  left: 280px;
+  top: 12px;
+  cursor:pointer;
+}
+
+#hideit4{
+  position: absolute;
+  left: 280px;
+  top: 12px;
+  cursor:pointer;
 }

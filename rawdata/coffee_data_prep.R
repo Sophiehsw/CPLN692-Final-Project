@@ -23,7 +23,7 @@ ddinPhilly <- filter(starbucksANDdd, CITY16 == "PHILADELPHIA" & CONAME == "DUNKI
 # Select needed columns
 names(ddinPhilly)
 
-dd <- ddinPhilly[,c(3,4,8,11,12,17,23:26, 28:42)]
+dd <- ddinPhilly[,c(3,4,8,11,12,13,17,23:26,28:42)]
 dd <- na.omit(dd)
 dd <- dd[(dd$HHs !=0),]
 

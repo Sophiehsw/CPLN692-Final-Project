@@ -15,10 +15,6 @@ var Stamen_TonerLite = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z
   ext: 'png'
 }).addTo(map);
 
-//add zoom control with your options
-L.control.zoom({
-    position:'topright'
-}).addTo(map);
 
 /* =====================
 Import Data
@@ -54,7 +50,7 @@ $(document).ready(function() {
     // First plot philly boundary then plot markers - crucial for layer order
     $.ajax(dataset).done(function(data) {
       parsedData = JSON.parse(data);
-      map1();
+      defaultPage();
     });
   });
 });

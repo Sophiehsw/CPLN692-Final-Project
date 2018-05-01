@@ -83,6 +83,9 @@ $('#filter-choice2').click(function(e){
   $('#filter-choice2').css(activeStyle);
 });
 
+// The code below allows user to toggle the custom range choice
+// But fadeToggle() method seems to be a better way
+/*
 $('#filter-choice1-custom').click(function() {
   var clicks = $(this).data('clicks');
   if (!clicks) {
@@ -110,6 +113,44 @@ $('#filter-choice2-custom').click(function() {
   }
   $(this).data("clicks", !clicks);
 });
+*/
+
+$('#filter-choice1-custom').click(function() {
+    $('#filter-custom2').hide();
+    $('#filter-custom1').fadeToggle();
+    $('#generateButton-filter').fadeToggle();
+});
+
+$('#filter-choice2-custom').click(function() {
+    $('#filter-custom1').hide();
+    $('#filter-custom2').fadeToggle();
+    $('#generateButton-filter').fadeToggle();
+});
+
+$('#filter-choice1-above').click(function() {
+    $('#filter-custom1').hide();
+    $('#filter-custom2').hide();
+    $('#generateButton-filter').hide();
+});
+
+$('#filter-choice1-below').click(function() {
+    $('#filter-custom1').hide();
+    $('#filter-custom2').hide();
+    $('#generateButton-filter').hide();
+});
+
+$('#filter-choice2-above').click(function() {
+    $('#filter-custom1').hide();
+    $('#filter-custom2').hide();
+    $('#generateButton-filter').hide();
+});
+
+$('#filter-choice2-below').click(function() {
+    $('#filter-custom1').hide();
+    $('#filter-custom2').hide();
+    $('#generateButton-filter').hide();
+});
+
 
 /* =====================
 Close info sidebar

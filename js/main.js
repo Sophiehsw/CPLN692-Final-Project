@@ -24,6 +24,7 @@ L.control.zoom({
 Define Variables
 ===================== */
 var featureGroup;
+var locationMarker;
 var generatedRoute;
 var filterSelection;
 var customSelection;

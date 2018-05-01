@@ -550,9 +550,19 @@ $("#go").click(function(e) {
   var store = _.select(parsedData.features, function (obj) {
       return obj.properties.LOCNUM === Number(storeID);
     });
+  // Check if the store ID is entered correctly
   if(store.length !== 0) {
     var dest_lat = store[0].properties.lat;
     var dest_lng = store[0].properties.lng;
+    /* If fail to get correct current location, se default start point*/
+    if (origin.lng === 0 || origin.lat === 0) {
+      origin.lat = 39.952562;
+      origin.lng = -75.192620;
+      alerttext = "<dt>" + "Defalut location marker" + "</dt>" +
+                  "<dt>" + "(Fail to get your current location)" + "</dt>";
+      L.marker([origin.lat, origin.lng],{icon: myIcon}).addTo(map).bindPopup(alerttext);
+    }
+    /* Otherwise, use user's current location as the origin */
     var myToken = "pk.eyJ1Ijoibm9yYXlpbiIsImEiOiJjamZoYnVhajYzcWRjMnFvZnhkc2lkaDFnIn0.uwQxjsuwtL0epbau5U0M7Q";
     var route = "https://api.mapbox.com/directions/v5/mapbox/driving/" + origin.lng + "," + origin.lat + ";" + dest_lng + "," + dest_lat + "?access_token=" + myToken;
     $.ajax(route).done(function(data){
@@ -584,6 +594,7 @@ $("#clear").click(function(e) {
   removeLine();
 });
 
+// For better user interaction, choose not to use the code below
 /* Make input field empty again even if there has been some text in it
 $('#usr').focus(
     function(){

@@ -6,4 +6,4 @@ interaction. It aims to help user visualize and analyze current stores' location
 and business settings and then determine where to locate the next Dunkin' Donut
 branch store in Philly.
 
-- [Launched Website](http://dunkindonutsmapping.bitballoon.com/)
+- [Launched Website](https://dunkindonutsmapping.bitballoon.com/)

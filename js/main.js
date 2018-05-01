@@ -21,6 +21,14 @@ L.control.zoom({
 }).addTo(map);
 
 /* =====================
+Define Variables
+===================== */
+var featureGroup;
+var generatedRoute;
+var filterSelection;
+var customSelection;
+
+/* =====================
 Import Data
 ===================== */
 // Farmers market data
@@ -39,12 +47,7 @@ $.ajax(phillyBoundary).done(function(data){
 });
 
 /* =====================
-Define Variables
-===================== */
-var featureGroup;
-
-/* =====================
-Call Functions
+Initiate the web page
 ===================== */
 $(document).ready(function() {
   // Philly boundary

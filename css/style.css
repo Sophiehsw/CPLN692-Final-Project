@@ -104,18 +104,11 @@ h5 {
     width: 100%;
     background-color: rgba(0,0,0,0);
     border-style: none;
-    color:antiquewhite;
+    color:white;
     box-sizing: border-box;
     font-family: Verdana;
     font-weight: lighter;
     font-size:12px;
-}
-
-.form-control.number {
-  font-size: 12px;
-  font-weight: bold;
-  margin-top: 0px;
-  color: #11799F;
 }
 
 .info-subtitle {
@@ -161,13 +154,26 @@ h5 {
   background-color: rgba(255, 255, 255, 0.8);
 }
 
+.filter-custom {
+  margin-left: 35px;
+  margin-right: 45px;
+  margin-top: 5px;
+}
+
 #route-direction {
   margin-top: 20px;
   margin-left: 20px;
+  margin-right: 10px;
   color: rgba(255, 255, 255, 0.7);
 }
 
-#generateButton > button {
+.form-group {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 20px;
+}
+
+.generateButton > button {
   background-color: rgba(0,0,0,0.2);
   border: 1px solid;
   color: rgba(255, 255, 255, 0.7);
@@ -181,10 +187,9 @@ h5 {
   transition-duration: 0.4s;
   cursor: pointer;
   border-radius: 5px;
-  margin-top: 40px;
 }
 
-#generateButton > button:hover {
+.generateButton > button:hover {
   color:rgba(0,0,0,0.6);
   background-color: rgba(255, 255, 255, 0.8);
 }
@@ -193,42 +198,54 @@ h5 {
   display: inline-block;
   position:absolute;
   margin-left: 190px;
+  margin-top: 5px;
 }
 
 #clear {
   display: inline-block;
   position:absolute;
   margin-left: 240px;
+  margin-top: 5px;
+}
+
+#filter-go {
+  display: inline-block;
+  position:absolute;
+  margin-left: 180px;
+  margin-top: 15px;
+}
+
+#filter-clear {
+  display: inline-block;
+  position:absolute;
+  margin-left: 240px;
+  margin-top: 15px;
 }
 
 #hideit1{
   position: absolute;
-  left: 280px;
+  left: 287px;
   top: 12px;
   cursor:pointer;
 }
 
-#hideit1:hover{
-  color:rgba(0,0,0,0.2);
-}
-
 #hideit2{
   position: absolute;
-  left: 280px;
+  left: 287px;
   top: 12px;
   cursor:pointer;
 }
 
 #hideit3{
   position: absolute;
-  left: 280px;
+  left: 287px;
   top: 12px;
   cursor:pointer;
 }
 
 #hideit4{
   position: absolute;
-  left: 280px;
+  left: 287px;
   top: 12px;
   cursor:pointer;
 }

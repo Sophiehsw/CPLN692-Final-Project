@@ -81,10 +81,6 @@
                 class="form-control"
                 placeholder="Number of Employees"
                 disabled>
-         <input id="area" type="text"
-                class="form-control"
-                placeholder="Area in SQFT"
-                disabled>
         </div>
         <h5 class="info-subtitle">Demographic Stats</h5>
         <div class="input-group">
@@ -149,13 +145,41 @@
           <ul class="nav nav-pills nav-stacked">
             <li role="presentation" id="filter-choice1-above" style="margin-bottom:5px; margin-top:10px"><a href="#">Above Average</a></li>
             <li role="presentation" id="filter-choice1-below" style="margin-bottom:5px; "><a href="#">Below Average</a></li>
+            <li role="presentation" id="filter-choice1-custom" style="margin-bottom:5px; "><a href="#">Custom Range</a></li>
           </ul>
         </div>
         <div id="filter-expand2" class="filter-expand" hidden="hidden">
           <ul class="nav nav-pills nav-stacked">
             <li role="presentation" id="filter-choice2-above" style="margin-bottom:5px; margin-top:10px"><a href="#">Above Average</a></li>
             <li role="presentation" id="filter-choice2-below" style="margin-bottom:5px; "><a href="#">Below Average</a></li>
+            <li role="presentation" id="filter-choice2-custom" style="margin-bottom:5px; "><a href="#">Custom Range</a></li>
           </ul>
+        </div>
+        <!-- custom range -->
+        <div id="filter-custom1" class="filter-custom" hidden = "hidden">
+           <h5>From</h5>
+           <input id="low_salesvol" type="number"
+                  class="form-control"
+                  placeholder="Min:112" style="color:black">
+           <h5>To</h5>
+           <input id="high_salesovol" type="number"
+                  class="form-control"
+                  placeholder="Max: 1960" style="color:black">
+        </div>
+        <div id="filter-custom2" class="filter-custom" hidden = "hidden">
+           <h5>From</h5>
+           <input id="low_emp" type="number"
+                  class="form-control"
+                  placeholder="Min:2" style="color:black">
+           <h5>To</h5>
+           <input id="high_emp" type="number"
+                  class="form-control"
+                  placeholder="Max: 35" style="color:black">
+        </div>
+        <!-- filter submit button -->
+        <div class="generateButton" id="generateButton-filter" hidden="hidden">
+          <button class="button" id="filter-go">Filter</button>
+          <button class="button" id="filter-clear">Clear</button>
         </div>
       </div>
       <!-- route -->
@@ -164,9 +188,14 @@
         <div class="barTitle">
           <h3 style="color:rgba(255, 255, 255, 0.8); vertical-align:middle;margin-bottom:5px; margin-left:20px; margin-right:20px; margin-top: 40px">Find the route</h3>
         </div>
-        <p id="route-direction">To find a route, click a Dunkin' Donuts store you want to visit and then click "Go!".</p>
-        <p id="route-direction">To clear route, clike "Clear". </p>
-        <div id="generateButton">
+        <p id="route-direction">To find a route from your current location to a Dunkin' Donuts store,
+          search by store ID and then click "Go!".</p>
+        <p id="route-direction">To clear route, click "Clear". </p>
+        <div class="form-group">
+          <label for="usr" style="color:rgba(255, 255, 255, 0.8)">Destination (Store ID):</label>
+          <input type="text" class="form-control" id="usr">
+        </div>
+        <div class="generateButton" id="generateButton-route">
           <button class="button" id="go">Go!</button>
           <button class="button" id="clear">Clear</button>
         </div>

@@ -1,5 +1,5 @@
 /* =====================
-Default setup
+Default setup + Info
 ===================== */
 var defaultPage = function(event) {
   featureGroup = L.geoJson(parsedData, {
@@ -18,26 +18,33 @@ var defaultPage = function(event) {
 };
 
 // Default interacive feature
-// Interactive feature
-var highlightFeature = function(e) {
-    var layer = e.target;
+var highlightFeature = function(feature) {
+    var layer = feature.target;
     layer.setStyle({radius: 12,
                     color: "white",
                     opacity: 0.5,
                     fillColor: "white",
                     fillOpacity: 0.8,
     });
-    layer.bindTooltip("Address: "+layer.feature.properties.ADDR,
-    {opacity: 0.7, offset:[-10,0], direction:'left'}).openTooltip();
+    bindtext = "<dt>" + "Store ID: " + layer.feature.properties.LOCNUM + "</dt>" +
+               "<dt>" + "Address: " + layer.feature.properties.ADDR + "</dt>" ;
+    layer.bindTooltip(bindtext,{opacity: 0.7, offset:[-10,0], direction:'left'}).openTooltip();
 };
 
-var resetHighlight = function(e) {
-    featureGroup.resetStyle(e.target);
+var resetHighlight = function(feature) {
+    featureGroup.resetStyle(feature.target);
 };
 
-var clickEachFeature = function(e) {
+var clickEachFeature = function(feature) {
+    // hide all other pages
+    $('#maps-page').hide();
+    $('#filter-page').hide();
+    $('#route-page').hide();
+    // load info page
     $('.intsidebar').fadeIn();
     $('#info-page').fadeIn();
+    var layer = feature.target;
+    fillInfo(layer);
 };
 
 var onEachFeature = function(feature, layer) {
@@ -46,6 +53,23 @@ var onEachFeature = function(feature, layer) {
         mouseout: resetHighlight,
         click: clickEachFeature,
     });
+};
+
+var fillInfo = function(layer) {
+  $('#store_id').val("Store ID: " + layer.feature.properties.LOCNUM);
+  $('#address').val("Address: " + layer.feature.properties.ADDR);
+  $('#zipcode').val("Zipcode: " + layer.feature.properties.ZIP);
+  $('#salesvol').val("Sales Volume: " + layer.feature.properties.SALES_VOL);
+  $('#employees').val("# of Employees: " + layer.feature.properties.NUMBER_EMP);
+  $('#population').val("Population: " + layer.feature.properties.POP);
+  $('#households').val("# of Households: " + layer.feature.properties.HHs);
+  $('#income').val("Median Income ($): " + layer.feature.properties.Med_Inc);
+  $('#housevalue').val("Median House Value ($): " + layer.feature.properties.Med_Value);
+  $('#pctwhite').val("% White: " + layer.feature.properties.Pct_White);
+  $('#pctcollege').val("% College Degree: " + layer.feature.properties.Pct_Col2);
+  $('#dhighway').val("Highway: " + layer.feature.properties.distHwy);
+  $('#dshop').val("Other Coffee Shops: " + layer.feature.properties.CoffeeDist);
+  $('#demploy').val("Employment Center: " + layer.feature.properties.distEmpC);
 };
 
 // Every time user clicks on "close", the map will be reset
@@ -105,10 +129,10 @@ var getColor1 = function(d) {
 };
 
 var getRadius1 = function(d) {
-    return d > 784  ? 8 :
-           d > 560  ? 7 :
-           d > 392  ? 6 :
-           d > 280  ? 5 :
+    return d > 784  ? 12 :
+           d > 560  ? 10 :
+           d > 392  ? 8 :
+           d > 280  ? 6 :
            d > 112  ? 4 :
                       3;
 };
@@ -126,7 +150,7 @@ var getStyle1 = function(feature) {
 // Interactive feature
 var highlightFeature1 = function(e) {
     var layer = e.target;
-    layer.setStyle({radius: 11,
+    layer.setStyle({radius: 14,
                     fillColor: "white",
                     fillOpacity: 1,
     });
@@ -207,10 +231,10 @@ var getColor2 = function(d) {
 };
 
 var getRadius2 = function(d) {
-    return d > 14  ? 8 :
-           d > 10  ? 7 :
-           d > 7   ? 6 :
-           d > 5   ? 5 :
+    return d > 14  ? 12 :
+           d > 10  ? 10 :
+           d > 7   ? 8 :
+           d > 5   ? 6 :
            d > 2   ? 4 :
                      3;
 };
@@ -228,7 +252,7 @@ var getStyle2 = function(feature) {
 // Interactive feature
 var highlightFeature2 = function(e) {
     var layer = e.target;
-    layer.setStyle({radius: 11,
+    layer.setStyle({radius: 14,
                     fillColor: "white",
                     fillOpacity: 1,
     });
@@ -299,16 +323,270 @@ $('#mapsChoice2').click(function(e){
 });
 
 /* =====================
-Info on click
+Filter
 ===================== */
-var fillInfo = function(feature) {
-  $('#store_id').val("Store ID: " + feature.properties.total_num_rides);
-  $('#std_rides').val("Standardized Number of Rides: " + properties.std_rides);
-  $('#address').val("Address: " + properties.addressstreet);
-  $('#zipcode').val("Zipcode: "+properties.addresszipcode);
-  $('#dockNumber').val("Docking Capacity: " + properties.totaldocks);
-  $('#tll_per').val("Share of All Indego Rides: " + (Math.round(properties.ttl_per*100)).toFixed(1) + "%");
-  $('#station_id').val("Station ID: " + properties.station_id);
-  $('#departure').val("Departure: " + properties.start_num_rides + " rides, " + (Math.round(properties.st_per_in*100)).toFixed(1) + "% of total");
-  $('#arrival').val("Arrival: " + properties.end_num_rides + " rides, " + (Math.round(properties.ed_per_in*100)).toFixed(1) + "% of total");
+// Above and Below Average
+// Sales Volume - average: 522
+// Employees - average: 9
+
+var filterStyle = function(feature) {
+  if (filterSelection === 1){
+    if(feature.properties.SALES_VOL >= 522) {
+      return {color:"#FCE205", fillColor:"#FCE205",
+      radius: getRadius1(feature.properties.SALES_VOL)}; }}
+  else if (filterSelection === 2){
+    if(feature.properties.SALES_VOL < 522) {
+      return {color:"#FCF4A3", fillColor:"#FCF4A3",
+      radius: getRadius1(feature.properties.SALES_VOL)}; }}
+  else if (filterSelection === 3){
+    if(feature.properties.NUMBER_EMP >= 9) {
+      return {color:"#FF0090", fillColor:"#FF0090",
+      radius: getRadius2(feature.properties.NUMBER_EMP)}; }}
+  else if (filterSelection === 4){
+    if(feature.properties.NUMBER_EMP < 9) {
+      return {color:"#FCA3B7", fillColor:"#FCA3B7",
+      radius: getRadius2(feature.properties.NUMBER_EMP)}; }}
 };
+
+var myFilter = function(feature){
+  if (filterSelection === 1){
+    if(feature.properties.SALES_VOL >= 522) {
+      return true; }}
+  else if (filterSelection === 2){
+    if(feature.properties.SALES_VOL < 522) {
+      return true; }}
+  else if (filterSelection === 3){
+    if(feature.properties.NUMBER_EMP >= 9) {
+      return true; }}
+  else if (filterSelection === 4){
+    if(feature.properties.NUMBER_EMP < 9) {
+      return true; }}
+};
+
+var highlightFeature3 = function(feature) {
+    var layer = feature.target;
+    layer.setStyle({radius: 14,
+                    color: "white",
+                    opacity: 0.5,
+                    fillColor: "white",
+                    fillOpacity: 0.8,
+    });
+    if (filterSelection === 1 || filterSelection === 2 || customSelection === 1) {
+      bindtext = "<dt>" + "Store ID: " + layer.feature.properties.LOCNUM + "</dt>" +
+                 "<dt>" + "Address: " + layer.feature.properties.ADDR + "</dt>" +
+                 "<dt>" + "Sales Volume: " + layer.feature.properties.SALES_VOL + "</dt>";
+    }else if (filterSelection === 3 || filterSelection === 4 || customSelection === 2) {
+      bindtext = "<dt>" + "Store ID: " + layer.feature.properties.LOCNUM + "</dt>" +
+                 "<dt>" + "Address: " + layer.feature.properties.ADDR + "</dt>" +
+                 "<dt>" + "# of Employees: " + layer.feature.properties.NUMBER_EMP + "</dt>";
+    }
+    layer.bindTooltip(bindtext,
+    {opacity: 0.7, offset:[-10,0], direction:'left'}).openTooltip();
+};
+
+var resetHighlight3 = function(feature) {
+    featureGroup.resetStyle(feature.target);
+};
+
+var onEachFeature3 = function(feature, layer) {
+    layer.on({
+        mouseover: highlightFeature3,
+        mouseout: resetHighlight3,
+    });
+};
+
+var filteredMap = function(event) {
+  removeMarker();
+  featureGroup = L.geoJson(parsedData, {
+    style: filterStyle,
+    onEachFeature:onEachFeature3,
+    filter: myFilter,
+    pointToLayer: function (feature, latlng) { return L.circleMarker(latlng,{weight: 4,opacity: 0.4,fillOpacity: 0.8});}
+  }).addTo(map);
+  map.setView([40.0065476,-75.1531398],12);
+};
+
+$('#filter-choice1-above').click(function(e){
+  filterSelection = 1;
+  customSelection = 1;
+  removeFilterInput();
+  filteredMap();
+});
+
+$('#filter-choice1-below').click(function(e){
+  filterSelection = 2;
+  customSelection = 1;
+  removeFilterInput();
+  filteredMap();
+});
+
+$('#filter-choice2-above').click(function(e){
+  filterSelection = 3;
+  customSelection = 2;
+  removeFilterInput();
+  filteredMap();
+});
+
+$('#filter-choice2-below').click(function(e){
+  filterSelection = 4;
+  customSelection = 2;
+  removeFilterInput();
+  filteredMap();
+});
+
+// Customized filter option
+$('#filter-choice1-custom').click(function(e){
+  customSelection = 1;
+  filterSelection = 1;
+});
+$('#filter-choice2-custom').click(function(e){
+  customSelection = 2;
+  filterSelection = 3;
+});
+
+$('#filter-go').click(function(e){
+  // Set view
+  map.setView([40.0065476,-75.1531398],12);
+  // Get user input
+  var min;
+  var max;
+  if(customSelection === 1){
+    min = $('#low_salesvol').val();
+    max = $('#high_salesovol').val();
+  }else if(customSelection === 2){
+    min = $('#low_emp').val();
+    max = $('#high_emp').val();
+  }
+  // Remove current marker
+  removeMarker();
+  // Filter
+  var customFilter = function(feature){
+    if (customSelection === 1){
+      if(feature.properties.SALES_VOL>=min & feature.properties.SALES_VOL<=max ){
+        return true;
+      }}
+    else if (customSelection === 2){
+      if(feature.properties.NUMBER_EMP>=min & feature.properties.NUMBER_EMP<=max ){
+        return true;
+      }}
+  };
+  var customStyle = function(feature) {
+    if (customSelection === 1){
+      return {radius: getRadius1(feature.properties.SALES_VOL)}; }
+    else if (customSelection === 2){
+      return {radius: getRadius2(feature.properties.NUMBER_EMP)}; }
+  };
+  // Plot new map
+  featureGroup = L.geoJson(parsedData, {
+    style: customStyle,
+    onEachFeature:onEachFeature3,
+    filter: customFilter,
+    pointToLayer: function (feature, latlng) { return L.circleMarker(latlng,{color:"#7FFF00",fillColor:"#7FFF00",weight: 4,opacity: 0.4,fillOpacity: 0.8});}
+  }).addTo(map);
+});
+
+var removeFilterInput = function(){
+  if(customSelection === 1){
+    $('#low_salesvol').val("");
+    $('#high_salesovol').val("");
+  }else if(customSelection === 2){
+    $('#low_emp').val("");
+    $('#high_emp').val("");
+  }
+};
+
+$('#filter-clear').click(function(e){
+  removeFilterInput();
+  removeMarker();
+});
+
+/* =====================
+Route
+===================== */
+var state = {
+  position: {
+    marker: null,
+    updated: null
+  }
+};
+
+// Personized drop pin icon to mark current location
+var myIcon = L.icon({
+  iconUrl: 'my-icon.png',
+  iconSize: [35, 30],
+  popupAnchor: [0, -20]
+});
+
+var updatePosition = function(lat, lng, updated) {
+  if (state.position.marker) { map.removeLayer(state.position.marker); }
+  state.position.marker = L.marker([lat, lng],{icon: myIcon});
+  state.position.updated = updated;
+  locationMarker = state.position.marker;
+  locationMarker.addTo(map).bindPopup('Your current location');
+};
+
+// Set the original location
+var origin = {"lat":0, "lng":0};
+
+// Only the first time user clicks the route page, we will ask if user allows for geolocating their position
+$('#route-page').one("click", function () {
+  /* This 'if' check allows us to safely ask for the user's current position */
+  if ("geolocation" in navigator) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      updatePosition(position.coords.latitude, position.coords.longitude, position.timestamp);
+      // Set current position as the origin
+      origin.lat = position.coords.latitude;
+      origin.lng = position.coords.longitude;
+      console.log(origin);
+    });
+  } else {
+    alert("Allow us to know your current position to try the 'Route' page!");
+  }
+});
+
+$("#go").click(function(e) {
+  removeLine();
+  var storeID = $('#usr').val();
+  var store = _.select(parsedData.features, function (obj) {
+      return obj.properties.LOCNUM === Number(storeID);
+    });
+  if(store.length !== 0) {
+    var dest_lat = store[0].properties.lat;
+    var dest_lng = store[0].properties.lng;
+    var myToken = "pk.eyJ1Ijoibm9yYXlpbiIsImEiOiJjamZoYnVhajYzcWRjMnFvZnhkc2lkaDFnIn0.uwQxjsuwtL0epbau5U0M7Q";
+    var route = "https://api.mapbox.com/directions/v5/mapbox/driving/" + origin.lng + "," + origin.lat + ";" + dest_lng + "," + dest_lat + "?access_token=" + myToken;
+    $.ajax(route).done(function(data){
+      var eachRoute = decode(data.routes[0].geometry);
+      var latlngs = _.map(eachRoute, function(each) {return [each[1]*10, each[0]*10];});
+      // Map the route using turf.js
+      var line = turf.lineString(latlngs);
+      var routeStyle = {
+        "color": "pink",
+        "weight": 3,
+        "opacity": 0.7
+      };
+      generatedRoute = L.geoJson(line, {style: routeStyle}).addTo(map);
+    });
+  } else {
+    alert("Please enter a correct store ID!");
+  }
+});
+
+// Remove route function
+var removeLine = function(){
+  if (typeof generatedRoute !== 'undefined') {
+    map.removeLayer(generatedRoute);
+  }
+};
+
+$("#clear").click(function(e) {
+  $('#usr').val('');
+  removeLine();
+});
+
+/* Make input field empty again even if there has been some text in it
+$('#usr').focus(
+    function(){
+        $(this).val('');
+    });
+*/

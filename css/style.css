@@ -33,6 +33,62 @@ h5 {
   margin:10px;
 }
 
+#front {
+  opacity: 1;
+}
+
+#start {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 20px;
+  padding: 15px;
+  width: 120px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+#start span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+#start span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+#start:hover span {
+  padding-right: 25px;
+}
+
+#start:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+#start-text {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.5);
+}
+
 .navsidebar {
   position: absolute;
   left: 0px;

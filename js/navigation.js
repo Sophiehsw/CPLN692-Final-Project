@@ -10,6 +10,23 @@ var normalStyle={
 };
 
 /* =====================
+Start!
+===================== */
+$('#start').click(function(){
+  $('.bg').animate({
+      opacity: 'hide', // animate fadeOut
+      width: 'hide'  // animate slideLeft
+    }, 'slow', 'linear', function() {
+      $(this).remove();
+      // Show navigation sidebar and map
+      $(".navsidebar").fadeIn();
+      $("#map").fadeIn();
+      // Crucial step to make sure the map load correcly
+      map.invalidateSize();
+    });
+});
+
+/* =====================
 Navigation bar
 ===================== */
 $('#maps').click(function(e){

@@ -10,8 +10,14 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
+    <!-- Start Page -->
+    <div class="bg">
+      <img id="front" src="start-bg.png" width="100%" height="100%"/>
+      <h1 id="start-text">DUNKIN' DONUTS IN PHILLY</h1>
+      <button class="start-button" id="start"><span>START </span></button>
+    </div>
     <!-- Navigation Sidebar -->
-    <div class="navsidebar">
+    <div class="navsidebar" hidden="hidden">
       <!-- logo -->
       <div class="blank"></div>
       <div id="logo-container">
@@ -202,8 +208,7 @@
       </div>
     </div>
     <!-- Map -->
-    <div id="map" class="map"></div>
-    <!-- Legend -->
+    <div id="map" class="map" hidden="hidden"></div>
     <!-- Javascript Imports -->
     <script src="js/jquery-2.2.0.js"></script>
     <script src="js/underscore.js"></script>

@@ -517,6 +517,12 @@ var myIcon = L.icon({
   popupAnchor: [0, -20]
 });
 
+var myIcon2 = L.icon({
+  iconUrl: 'my-icon-default.png',
+  iconSize: [35, 30],
+  popupAnchor: [0, -20]
+});
+
 var updatePosition = function(lat, lng, updated) {
   if (state.position.marker) { map.removeLayer(state.position.marker); }
   state.position.marker = L.marker([lat, lng],{icon: myIcon});
@@ -559,8 +565,8 @@ $("#go").click(function(e) {
       origin.lat = 39.952562;
       origin.lng = -75.192620;
       alerttext = "<dt>" + "Defalut location marker" + "</dt>" +
-                  "<dt>" + "(Fail to get your current location)" + "</dt>";
-      L.marker([origin.lat, origin.lng],{icon: myIcon}).addTo(map).bindPopup(alerttext);
+                  "<dt>" + "(Shows if unable to get your location)" + "</dt>";
+      L.marker([origin.lat, origin.lng],{icon: myIcon2}).addTo(map).bindPopup(alerttext);
     }
     /* Otherwise, use user's current location as the origin */
     var myToken = "pk.eyJ1Ijoibm9yYXlpbiIsImEiOiJjamZoYnVhajYzcWRjMnFvZnhkc2lkaDFnIn0.uwQxjsuwtL0epbau5U0M7Q";

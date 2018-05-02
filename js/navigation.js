@@ -15,7 +15,7 @@ Start!
 $('#start').click(function(){
   $('.bg').animate({
       opacity: 'hide', // animate fadeOut
-      width: 'hide'  // animate slideLeft
+      right: '200px',  // slide left
     }, 'slow', 'linear', function() {
       $(this).remove();
       // Show navigation sidebar and map
